@@ -167,7 +167,7 @@ def show_to_do(args):
     print("");
     print("You now should: ")
     print("  - Switch reads to " + args.new_keyspace + '.' + args.new_table)
-    print("  - Remove forked writes / Start back writing, but only to " + args.new_keyspace + '.' + args.new_table)
+    print("  - Remove forked writes / restart your node and start back writing, but only to " + args.new_keyspace + '.' + args.new_table)
     print("  - Remove old table by running the following CQL query on ANY node: DROP TABLE " + args.old_keyspace + '.' + args.old_table + ";")
     print("  - Clean snapshots by running the following command on EACH node: nodetool clearsnapshot -t split_keyspace " + args.new_keyspace)
 
