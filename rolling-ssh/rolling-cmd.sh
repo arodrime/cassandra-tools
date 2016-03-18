@@ -36,7 +36,7 @@ node_list=$(nodetool -h $some_cassandra_node status | awk '{split($0,a," "); pri
 # Can be passed as the only argument
 if [ $# -eq 0 ]
 then
-    ssh_command="df -h" # Can be either a monitoring or an active command like "nodetool setstreamthroughput 100"
+    ssh_command='df -h' # Can be either a monitoring or an active command like "nodetool setstreamthroughput 100"
 else
     ssh_command="$@"
 fi

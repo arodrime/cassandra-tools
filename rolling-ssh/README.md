@@ -23,8 +23,6 @@ Note that the command can be given as the only argument or by setting a variable
 
 ## Rolling restart
 
-A safe rolling restart can be performed with:
+A safe rolling restart can be performed with something like:
 
-	!!! TODO !!!
-
-	./rolling-cmd.sh "date && nodetool disablethrift && nodetool disablebinary && sleep 5 && nodetool disablegossip && nodetool drain && sleep 10 && sudo service cassandra restart sudo service cassandra restart && until echo "SELECT * FROM system.peers LIMIT 1;" | cqlsh $(curl -s http://169.254.169.254/latest/meta-data/local-ipv4) > /dev/null 2>1; do echo 'Node still DOWN'; sleep 30; done && echo 'Node ' $(curl -s http://169.254.169.254/latest/meta-data/local-ipv4) ' is now UP'"
+	./rolling-cmd.sh 'ip=$(cat /etc/hostname); nodetool disablethrift && nodetool disablebinary && sleep 5 && nodetool disablegossip && nodetool drain && sleep 10 && sudo service cassandra restart && until echo "SELECT * FROM system.peers LIMIT 1;" | cqlsh $ip > /dev/null 2>&1; do echo "Node $ip is still DOWN"; sleep 10; done && echo "Node $ip is now UP"'
