@@ -30,7 +30,7 @@ timeout=5
 # Can be from a file or only aiming at one rack for example:
 # $(cat server-list.txt | grep '10.10.50')
 some_cassandra_node=localhost # Used to grep all the other nodes IPs
-node_list=$(nodetool -h $some_cassandra_node status | awk '{split($0,a," "); print a[2]}'| grep -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
+node_list=$(ssh $some_cassandra_node nodetool status | awk '{split($0,a," "); print a[2]}'| grep -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
 
 # The command to run on the previouslyy selected nodes
 # Can be passed as the only argument
